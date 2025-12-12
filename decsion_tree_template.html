@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Legal Decision Tree Deck</title>
+
+  <!-- Reveal.js (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+
+  <style>
+    /* Optional: make Mermaid diagrams breathe on slides */
+    .mermaid { font-size: 20px; }
+    .route-hint { font-size: 0.75em; opacity: 0.75; margin-top: 0.75rem; }
+    kbd {
+      border: 1px solid #888; border-bottom-width: 2px;
+      padding: 0.1rem 0.35rem; border-radius: 0.25rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 0) Title / Overview -->
+    <section id="start"
+      data-yn-disabled="true">
+      <h2>Legal Analysis Decision Tree</h2>
+      <p>Use <kbd>Y</kbd> / <kbd>N</kbd> on decision slides.</p>
+      <p class="route-hint">Press Space/→ to begin.</p>
+    </section>
+
+    <!-- 1) Decision slide: generic template (YES/NO) -->
+    <section id="Q1"
+      data-yes="Q1Y"
+      data-no="Q1N">
+      <h3>Decision Point</h3>
+
+      <pre class="mermaid">
+flowchart TD
+  A[Question: Is Element X satisfied?]
+  A -->|Yes| B[Proceed to next element]
+  A -->|No| C[Stop / alternate doctrine]
+      </pre>
+
+      <p class="route-hint">
+        Press <kbd>Y</kbd> for Yes branch • <kbd>N</kbd> for No branch
+      </p>
+    </section>
+
+    <!-- 1Y) YES slide -->
+    <section id="Q1Y" data-yn-disabled="true">
+      <h3>Yes Branch</h3>
+      <p>Element X is satisfied. Continue.</p>
+
+      <pre class="mermaid">
+flowchart TD
+  B[Element X satisfied] --> D[Next decision point]
+      </pre>
+
+      <p class="route-hint">Press → to continue.</p>
+    </section>
+
+    <!-- 1N) NO slide -->
+    <section id="Q1N" data-yn-disabled="true">
+      <h3>No Branch</h3>
+      <p>Element X is not satisfied. Consider an alternative pathway or end.</p>
+
+      <pre class="mermaid">
+flowchart TD
+  C[Element X not satisfied] --> E[End / Different claim]
+      </pre>
+
+      <p class="route-hint">Press ← to revisit or → to continue.</p>
+    </section>
+
+    <!-- 2) Example: Tort (Negligence) -->
+    <section id="TORT_DUTY"
+      data-yes="TORT_BREACH"
+      data-no="TORT_END_NO_DUTY">
+      <h3>Torts: Duty?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Duty of care owed?] -->|Yes| B[Breach]
+  A -->|No| C[No negligence liability]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="TORT_BREACH"
+      data-yes="TORT_CAUSE"
+      data-no="TORT_END_NO_BREACH">
+      <h3>Torts: Breach?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Breach of duty?] -->|Yes| B[Causation]
+  A -->|No| C[No negligence liability]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="TORT_CAUSE"
+      data-yes="TORT_DAMAGES"
+      data-no="TORT_END_NO_CAUSE">
+      <h3>Torts: Causation?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Cause-in-fact & proximate cause?] -->|Yes| B[Damages]
+  A -->|No| C[No negligence liability]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="TORT_DAMAGES"
+      data-yes="TORT_END_LIABILITY"
+      data-no="TORT_END_NO_DAMAGES">
+      <h3>Torts: Damages?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Legally cognizable damages?] -->|Yes| B[Negligence liability]
+  A -->|No| C[No negligence liability]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="TORT_END_LIABILITY" data-yn-disabled="true">
+      <h3>Torts Outcome</h3>
+      <p>All elements satisfied: negligence liability (subject to defenses).</p>
+    </section>
+
+    <section id="TORT_END_NO_DUTY" data-yn-disabled="true"><h3>Torts Outcome</h3><p>No duty → no negligence liability.</p></section>
+    <section id="TORT_END_NO_BREACH" data-yn-disabled="true"><h3>Torts Outcome</h3><p>No breach → no negligence liability.</p></section>
+    <section id="TORT_END_NO_CAUSE" data-yn-disabled="true"><h3>Torts Outcome</h3><p>No causation → no negligence liability.</p></section>
+    <section id="TORT_END_NO_DAMAGES" data-yn-disabled="true"><h3>Torts Outcome</h3><p>No damages → no negligence liability.</p></section>
+
+    <!-- 3) Example: Criminal law (Mens rea gate) -->
+    <section id="CRIM_MENSREA"
+      data-yes="CRIM_ACTUSREUS"
+      data-no="CRIM_END_NO_CRIME">
+      <h3>Criminal Law: Mens Rea?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Required mens rea present?] -->|Yes| B[Actus reus + concurrence]
+  A -->|No| C[No crime (as charged)]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="CRIM_ACTUSREUS"
+      data-yes="CRIM_DEFENSES"
+      data-no="CRIM_END_NO_CRIME">
+      <h3>Criminal Law: Actus Reus?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Voluntary act / omission duty satisfied?] -->|Yes| B[Consider defenses]
+  A -->|No| C[No crime (as charged)]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="CRIM_DEFENSES"
+      data-yes="CRIM_END_ACQUITTAL"
+      data-no="CRIM_END_GUILTY_POSSIBLE">
+      <h3>Criminal Law: Complete Defense?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Complete defense proven?] -->|Yes| B[Acquittal]
+  A -->|No| C[Liability possible]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="CRIM_END_NO_CRIME" data-yn-disabled="true"><h3>Criminal Outcome</h3><p>Element missing → no crime (as charged).</p></section>
+    <section id="CRIM_END_ACQUITTAL" data-yn-disabled="true"><h3>Criminal Outcome</h3><p>Complete defense → acquittal.</p></section>
+    <section id="CRIM_END_GUILTY_POSSIBLE" data-yn-disabled="true"><h3>Criminal Outcome</h3><p>Elements satisfied and no complete defense → liability possible.</p></section>
+
+    <!-- 4) Example: Constitutional analysis (government action gate) -->
+    <section id="CONLAW_STATEACTION"
+      data-yes="CONLAW_STANDARD"
+      data-no="CONLAW_END_PRIVATE">
+      <h3>Constitutional Law: State Action?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Government / state action?] -->|Yes| B[Select standard of review]
+  A -->|No| C[Constitution typically not implicated]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="CONLAW_STANDARD"
+      data-yes="CONLAW_APPLY"
+      data-no="CONLAW_APPLY">
+      <h3>Constitutional Law: Standard of Review Chosen?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Pick standard: rational basis / intermediate / strict?] --> B[Apply test]
+      </pre>
+      <p class="route-hint">Use → to proceed. (You can create Y/N here too if you want.)</p>
+    </section>
+
+    <section id="CONLAW_APPLY"
+      data-yes="CONLAW_END_UPHELD"
+      data-no="CONLAW_END_STRUCK">
+      <h3>Constitutional Law: Test Satisfied?</h3>
+      <pre class="mermaid">
+flowchart TD
+  A[Government meets burden under chosen test?] -->|Yes| B[Law upheld]
+  A -->|No| C[Law struck / relief granted]
+      </pre>
+      <p class="route-hint">Press <kbd>Y</kbd> or <kbd>N</kbd>.</p>
+    </section>
+
+    <section id="CONLAW_END_PRIVATE" data-yn-disabled="true"><h3>Con Law Outcome</h3><p>No state action → constitutional claim usually fails.</p></section>
+    <section id="CONLAW_END_UPHELD" data-yn-disabled="true"><h3>Con Law Outcome</h3><p>Test satisfied → law upheld.</p></section>
+    <section id="CONLAW_END_STRUCK" data-yn-disabled="true"><h3>Con Law Outcome</h3><p>Test not satisfied → law struck / remedy.</p></section>
+
+  </div>
+</div>
+
+<!-- Reveal.js + Mermaid -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+<script>
+  // 1) Initialize Mermaid (render diagrams inside <pre class="mermaid">)
+  mermaid.initialize({
+    startOnLoad: false,
+    securityLevel: "loose"
+  });
+
+  // 2) Initialize Reveal
+  const deck = new Reveal({
+    hash: true,
+    plugins: [ RevealNotes ]
+  });
+
+  deck.initialize().then(() => {
+    // Render Mermaid after Reveal is ready so diagrams layout correctly
+    renderMermaidOnCurrentAndAdjacent();
+  });
+
+  // Re-render on slide changes (ensures Mermaid renders when slide becomes visible)
+  deck.on("slidechanged", () => {
+    renderMermaidOnCurrentAndAdjacent();
+  });
+
+  function renderMermaidOnCurrentAndAdjacent() {
+    // Render current slide and near neighbors for smoother navigation
+    const indices = [
+      deck.getIndices().h,
+      deck.getIndices().h - 1,
+      deck.getIndices().h + 1
+    ];
+
+    indices.forEach(h => {
+      const slide = deck.getSlide(h, 0);
+      if (!slide) return;
+
+      // Render any unrendered Mermaid blocks on that slide
+      const blocks = slide.querySelectorAll("pre.mermaid:not([data-rendered='true'])");
+      blocks.forEach(async (block) => {
+        const code = block.textContent;
+        const id = "mmd_" + Math.random().toString(16).slice(2);
+
+        try {
+          const { svg } = await mermaid.render(id, code);
+          const container = document.createElement("div");
+          container.innerHTML = svg;
+
+          // Replace <pre> with rendered SVG
+          block.replaceWith(container);
+          container.setAttribute("data-rendered", "true");
+        } catch (e) {
+          // If Mermaid fails, keep the code visible for debugging
+          console.error("Mermaid render error:", e);
+        }
+      });
+    });
+  }
+
+  // 3) YES/NO keyboard router
+  // On a slide with data-yes="SomeSlideId" and data-no="OtherSlideId":
+  // - pressing Y jumps to SomeSlideId
+  // - pressing N jumps to OtherSlideId
+  document.addEventListener("keydown", (ev) => {
+    const key = ev.key.toLowerCase();
+    if (key !== "y" && key !== "n") return;
+
+    const current = deck.getCurrentSlide();
+    if (!current) return;
+
+    // Allow opt-out for non-decision slides
+    if (current.dataset.ynDisabled === "true") return;
+
+    const targetId = (key === "y") ? current.dataset.yes : current.dataset.no;
+    if (!targetId) return;
+
+    // Prevent interfering with Reveal's built-in keybindings
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    // Jump by slide id
+    deck.slide(document.getElementById(targetId).getAttribute("data-index-h") ?? null);
+
+    // More reliable: use location hash navigation by id
+    // Reveal supports #/slideId when hash:true
+    window.location.hash = "#/" + targetId;
+  }, true);
+
+  // 4) Optional: annotate slides with their horizontal index for direct deck.slide usage
+  // This helps if you prefer deck.slide(h,v) instead of hash navigation.
+  deck.on("ready", () => indexSlidesById());
+  deck.on("slidechanged", () => indexSlidesById());
+
+  function indexSlidesById() {
+    const all = document.querySelectorAll(".reveal .slides > section[id]");
+    all.forEach((sec, idx) => {
+      sec.setAttribute("data-index-h", idx);
+    });
+  }
+</script>
+</body>
+</html>
