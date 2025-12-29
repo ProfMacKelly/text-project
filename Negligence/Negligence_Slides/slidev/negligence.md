@@ -16,7 +16,8 @@ mdc: true
 layout: center
 alias: start
 ---
-# Starting slide
+# Negligence
+   
 ---
 layout: center
 alias: overview
@@ -26,13 +27,14 @@ alias: overview
 
 <v-clicks>
 
-1. *Prima Facie* Case for Liability  
+1. **_Prima Facie_ Case for Liability**  
+   > **Note:** "*Prima facie* case" means: <br>
+    **a.** P has alleged sufficient evidence to support a claim at **face value**, and <br>
+    **b.** P's evidence is rebuttable by defenses.
    - **Duty** (to others)
    - **Breach** (of duty)
    - **Damages** (suffered by another)
    - **Causation** (of damages)
-
-   > **Note:** Sufficient evidence to support a claim at **face value**; rebuttable by defenses.
 
 2. **Defenses to Liability**
    - Failure of Proof
@@ -40,35 +42,95 @@ alias: overview
 
 </v-clicks>
 
-
 ---
 layout: center
+alias: overview_map
 ---
-<div class="h-80 overflow-y-auto">
- 
+
+<Transform :scale="0.82" origin="center">
+
 ```mermaid
 flowchart TB 
-    du["**Element: Duty**<br>Did D owe a<br/>**legal duty** to P?"]
-    du -- **No** --> z["**STOP:<br>Not Liable**"]
-    du -- **Yes** --> da["**Element: Damages**<br>Did P suffer damages (aka harm, injury, loss)?"]
-    da -- **No** --> z
-    da -- **Yes** --> b["**Element: Breach**<br>Did D breach their duty?"]
-    b -- **No** --> z
-    b -- **Yes** --> ca["**Element: Causation**<br>Did D's conduct cause P's harm?"]
-    ca -- **No** --> z
-    ca -- **Yes** --> p(("**The D has a<br>_prima facie_ case<br>of negligence**"))
-    p == **NEXT** ==> aa[Is there an **affirmative defense**?]
-    aa -- **No** --> l["**D is liable**"]
-    aa -- **Yes** --> z
+    start["**START HERE**"] --> du["**Element: Duty**<br>Did D owe a<br/>**legal duty** to P?"]
+    du -- **No** --> not_liab["**STOP:<br>Not Liable**"]
+    du -- **Yes** --> da["**Element: Damages**<br>Did P suffer **damages** (aka harm, injury, loss)?"]
+    da -- **No** --> not_liab
+    da -- **Yes** --> br["**Element: Breach**<br>Did D **breach** their duty?"]
+    br -- **No** --> not_liab
+    br -- **Yes** --> ca["**Element: Causation**<br>Did D's conduct **cause** P's harm?"]
+    ca -- **No** --> not_liab
+    ca -- **Yes** --> pf(["**The D has a prima facie case for negligence**"])
+    pf --> def[Does D have an **affirmative defense**?]
+    def -- **No** --> liable["**D is liable**"]
+    def -- **Yes** --> not_liab
     
-   
-    z@{ shape: terminal}
-    style z stroke-width:2.5px,fill:#FFCDD2
-    l@{ shape: diamond}
-    style l stroke-width:2.5px
-    style p stroke-width:2.5px
+    start@{ shape: terminal}
+    not_liab@{ shape: terminal}
+    style start stroke-width:2.5px,stroke-dasharray: 2,fill:#fafafa,stroke:#000000
+    style not_liab stroke-width:2.5px,fill:#FFF8F8,stroke:#880101
+    liable@{ shape: diamond}
+    style liable stroke-width:2.5px,fill:#ebf5eb,stroke:#2c5e36
+    style pf stroke-width:2.5px,fill:#e1f5fe,stroke:#01579b
 ```
-</div>
+</Transform>
+
+---
+layout: two-cols
+alias: zoom_duty
+---
+
+<v-clicks>
+
+ - Duty
+ - If No → Not Liable
+ - If Yes → Damages?
+
+</v-clicks>
+::right::
+```mermaid
+flowchart TB 
+    start["**START HERE**"] --> du["**Element: Duty**<br>Did D owe a<br/>**legal duty** to P?"]
+    du -- **No** --> not_liab["**STOP:<br>Not Liable**"]
+    du -- **Yes** --> da["**Element: Damages**<br>Did P suffer **damages** (aka harm, injury, loss)?"]
+    
+    start@{ shape: terminal}
+    not_liab@{ shape: terminal}
+    style start stroke-width:2.5px,stroke-dasharray: 2,fill:#fafafa,stroke:#000000
+    style not_liab stroke-width:2.5px,fill:#FFF8F8,stroke:#880101
+```
+---
+
+
+---
+
+layout: two-cols
+alias: overview_map
+---
+<Transform :scale="0.75" origin="center">
+```mermaid 
+flowchart TB 
+    start["**START HERE**"] --> du["**Element: Duty**<br>Did D owe a<br/>**legal duty** to P?"]
+    du -- **No** --> not_liab["**STOP:<br>Not Liable**"]
+    du -- **Yes** --> da["**Element: Damages**<br>Did P suffer **damages** (aka harm, injury, loss)?"]
+    da -- **No** --> not_liab
+    da -- **Yes** --> br["**Element: Breach**<br>Did D **breach** their duty?"]
+    br -- **No** --> not_liab
+    br -- **Yes** --> ca["**Element: Causation**<br>Did D's conduct **cause** P's harm?"]
+    ca -- **No** --> not_liab
+    ca -- **Yes** --> pf(["**The D has a prima facie case for negligence**"])
+    pf --> def[Does D have an **affirmative defense**?]
+    def -- **No** --> liable["**D is liable**"]
+    def -- **Yes** --> not_liab
+    
+    start@{ shape: terminal}
+    not_liab@{ shape: terminal}
+    style start stroke-width:2.5px,stroke-dasharray: 2,fill:#fafafa,stroke:#000000
+    style not_liab stroke-width:2.5px,fill:#FFF8F8,stroke:#880101
+    liable@{ shape: diamond}
+    style liable stroke-width:2.5px,fill:#ebf5eb,stroke:#2c5e36
+    style pf stroke-width:2.5px,fill:#e1f5fe,stroke:#01579b
+```
+</Transform>
 ---
 
 # Element 1: Duty
@@ -142,7 +204,10 @@ decision: true
 question: "Causation?"
 yesTarget: 4
 noTarget: 7
+dragPos:
+  square: -109,0,0,0
 ---
+
 ```mermaid
 graph TB
 
