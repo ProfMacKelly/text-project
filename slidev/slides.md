@@ -18,7 +18,7 @@ mdc: true
 ---
 
 # Welcome to Slidev
-
+<global-bottom />
 Presentation slides for developers
 
 <div class="pt-12">
@@ -44,6 +44,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 ---
 transition: fade-out
 ---
+<TestBox />
 
 # What is Slidev?
 

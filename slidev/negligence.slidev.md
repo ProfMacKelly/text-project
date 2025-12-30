@@ -54,7 +54,7 @@ alias: overview
 </v-click>
 
 ---
-layout: top
+layout: center
 alias: zoom_duty
 ---
 
@@ -113,6 +113,9 @@ Did D have a duty to P?
 
 <PresenterZoom>
 
+what's up?
+
+
 ```mermaid {scale: 0.5}
 graph TD
     z1["**START HERE**"] --> du["Did D owe a<br/>**legal duty** to P?"]
@@ -128,7 +131,6 @@ graph TD
     aa -- **No** --> l["**D is liable**"]
     aa -- **Yes** --> z2
 ```
-
 </PresenterZoom>
 
 ---
@@ -138,7 +140,18 @@ alias: not_liable
 ---
 
 # Outcome
+
+<PresenterZoom>
+
+what's up?
+
+
+
+
 D is not liable for negligence.
+
+</PresenterZoom>
+
 
 ---
 layout: center
