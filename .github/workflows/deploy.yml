@@ -37,8 +37,8 @@ jobs:
           git status --porcelain
           git diff --exit-code -- slidev/pnpm-lock.yaml
 
-      - name: Build Slidev
-        run: pnpm -C slidev exec slidev build --base /resources/
+      - name: Build negligence deck
+        run: pnpm -C slidev exec slidev build decks/bus-law//torts/negligence/negligence.slides.md --base /resources/bus-law/torts/negligence/negligence_slidev/ --out dist/bus-law/torts/negligence/negligence_slidev
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
